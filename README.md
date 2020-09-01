@@ -800,3 +800,15 @@ core_sample_indices_
 components_
 labels_
 ## 降維
+### from sklearn.decomposition import PCA
+### from sklearn.decomposition import KernelPCA
+### from sklearn.decomposition import SparsePCA
+### from sklearn.decomposition import MiniBatchSparsePCA
+### from sklearn.decomposition import IncrementalPCA
+### from sklearn.decomposition import TruncatedSVD
+### from sklearn.manifold import MDS
+### from sklearn.manifold import LocallyLinearEmbedding
+### from sklearn.manifold import TSNE
+### from sklearn.manifold import Isomap
+### from sklearn.lda import LDA
+### from sklearn.decomposition import LatentDirichletAllocation
