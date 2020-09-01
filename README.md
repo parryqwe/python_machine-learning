@@ -318,8 +318,184 @@ n_features_
 n_outputs_
 oob_score_
 oob_decision_function_
+### bagging
+#### 參數
+base_estimator:object, default=None
+n_estimators:int, default=10
+max_samples:int or float, default=1.0
+max_features:int or float, default=1.0
+bootstrap:bool, default=True
+bootstrap_features:bool, default=False
+oob_score:bool, default=False
+warm_start:bool, default=False
+n_jobs:int, default=None
+random_state:int or RandomState, default=None
+verbose:int, default=0
+#### 方法
+decision_path(X\[, check_input\])
+fit(X, y\[, sample_weight, check_input, …\])
+get_params(\[deep\])
+predict(X\[, check_input\])
+predict_log_proba(X)
+predict_proba(X\[, check_input\])
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+#### 屬性
+base_estimator_
+n_features_
+estimators_
+estimators_samples_
+estimators_features_
+classes_
+n_classes_
+oob_score_
+oob_decision_function_
+## adaboosting
+#### 參數
+base_estimator:object, default=None
+n_estimators:int, default=50
+learning_rate:float, default=1
+algorithm:"SAMME", "SAMME.R", default="SAMME.R"
+random_state:int or RandomState, default=None
+#### 方法
+decision_path(X\[, check_input\])
+fit(X, y\[, sample_weight, check_input, …\])
+get_params(\[deep\])
+predict(X\[, check_input\])
+predict_log_proba(X)
+predict_proba(X\[, check_input\])
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+staged_decision_function(X)
+staged_predict(X)
+staged_predict_proba(X)
+staged_score(X, y\[, sample_weight\])
+#### 屬性
+base_estimator_
+estimators_
+classes_
+n_classes_
+estimator_weights_
+estimator_errors_
+feature_importances_
+## gradientboosting
+#### 參數
+loss:"deviance", "exponential", default="deviance"
+learning_rate:float, default=0.1
+n_estimators:int, default=100
+subsample:float, default=1.0
+criterion:"friedman_mse", "mse", "mae", default="friedman_mse"
+min_samples_split:int or float, default=2
+min_samples_leaf:int or float, default=1
+min_weight_fraction_leaf:float, default=0.0
+max_depth:int, default=3
+min_impurity_decrease:float, default=0.0
+min_impurity_split:float, default=None
+init:estimator or ‘zero’, default=None
+random_state:int or RandomState, default=None
+max_features:"auto", "sqrt", "log2", int or float, default=None
+verbose:int, default=0
+max_leaf_nodes:int, default=None
+warm_start:bool, default=False
+validation_fraction:float, default=0.1
+n_iter_no_change:int, default=None
+tol:float, default=1e-4
+ccp_alpha:non-negative float, default=0.0
+#### 方法
+
+apply(X)
+decision_function(X)
+fit(X, y\[, sample_weight, monitor\])
+get_params(\[deep\])
+predict(X\[, check_input\])
+predict_log_proba(X)
+predict_proba(X\[, check_input\])
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+staged_decision_function(X)
+staged_predict(X)
+staged_predict_proba(X)
+#### 屬性
+n_estimators_
+feature_importances_
+oob_improvement_
+train_score_
+loss_
+init_
+estimators_
+classes_
+n_features_
+n_classes_
+max_features_
 
 ## 預測數值
+### 線性模型 from sklearn.linear_model import LinearRegression
+#### 參數
+fit_intercept:bool, default=True
+normalize:bool, default=False
+copy_X:bool, default=True
+n_jobs:int, default=None
+#### 方法
+fit(X, y\[, sample_weight\])
+get_params(\[deep\])
+predict(X)
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+#### 屬性
+coef_
+rank_
+singular_
+intercept_
+### 其他模型
+from xgboost import XGBClassifier
+from catboost import CatBoostClassifier
+import lightgbm
+from mlxtend.classifier import StackingClassifier
+### 脊迴歸 from sklearn.linear_model import Ridge
+#### 參數
+alpha:float, ndarray of shape (n_targets,), default=1.0
+fit_intercept:bool, default=True
+normalize:bool, default=False
+copy_X:bool, default=True
+max_iter:int, default=None
+tol:float, default=1e-3
+solver:"auto", "svd", "cholesky", ‘lsqr’, ‘sparse_cg’, ‘sag’, ‘saga’, default=’auto’
+random_state:int, RandomState instance, default=None
+#### 方法
+fit(X, y\[, sample_weight\])
+get_params(\[deep\])
+predict(X)
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+#### 屬性
+coef_
+intercept_
+n_iter_
+### LASSO from sklearn.linear_model import Lasso
+#### 參數
+alpha:float, ndarray of shape (n_targets,), default=1.0
+fit_intercept:bool, default=True
+normalize:bool, default=False
+precompute:‘auto’, bool or array-like of shape (n_features, n_features), default=False
+copy_X:bool, default=True
+max_iter:int, default=None
+tol:float, default=1e-3
+warm_start:bool, default=False
+positive:bool, default=False
+random_state:int, RandomState instance, default=None
+selection:‘cyclic’, ‘random’, default=’cyclic’
+#### 方法
+fit(X, y\[, sample_weight\])
+get_params(\[deep\])
+path(X, y, *\[, l1_ratio, eps, n_alphas, …\])
+predict(X)
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+#### 屬性
+coef_
+intercept_
+n_iter_
+sparse_coef_
 ### KNN最近鄰模型 from sklearn.neighbors import KNeighborsRegressor
 #### 參數
 n_neighbors:int, default=5
@@ -372,5 +548,112 @@ max_features_
 n_features_
 n_outputs_
 tree_
+## 隨機森林迴歸from sklearn.ensemble import RandomForestRegressor
+#### 參數
+n_estimators:int, default=100
+criterion:"mse", "mae", default="mse"
+max_depth:int, default=None
+min_samples_split:int or float, default=2
+min_samples_leaf:int or float, default=1
+min_weight_fraction_leaf:float, default=0.0
+max_features:int, float or {“auto”, “sqrt”, “log2”}, default=None
+random_state:int, RandomState instance, default=None
+max_leaf_nodes:int, default=None
+min_impurity_decrease:float, default=0.0
+min_impurity_split:float, default=0
+bootstrap:bool, default=True
+oob_score:bool, default=False
+n_jobs:int, default=None
+verbose:int, default=0
+warm_start:bool, default=False
+ccp_alpha:non-negative float, default=0.0
+max_samples:int or float, default=None
+#### 方法
+apply(X\[, check_input\])
+decision_path(X\[, check_input\])
+fit(X, y\[, sample_weight, check_input, …\])
+get_params(\[deep\])
+predict(X\[, check_input\])
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+#### 屬性
+base_estimator_
+estimators_
+feature_importances_
+n_features_
+n_outputs_
+oob_score_
+oob_prediction_
+## adaboosting
+#### 參數
+base_estimator:object, default=None
+n_estimators:int, default=50
+learning_rate:float, default=1
+loss:"linear", "square", "exponential", default="linear"
+random_state:int or RandomState, default=None
+#### 方法
+fit(X, y\[, sample_weight\])
+get_params(\[deep\])
+predict(X)
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+staged_decision_function(X)
+staged_predict(X)
+staged_score(X, y\[, sample_weight\])
+#### 屬性
+base_estimator_
+estimators_
+estimator_weights_
+estimator_errors_
+feature_importances_
+## gradientboosting
+#### 參數
+loss:"ls","lad", "huber", "quantile", default="ls"
+learning_rate:float, default=0.1
+n_estimators:int, default=100
+subsample:float, default=1.0
+criterion:"friedman_mse", "mse", "mae", default="friedman_mse"
+min_samples_split:int or float, default=2
+min_samples_leaf:int or float, default=1
+min_weight_fraction_leaf:float, default=0.0
+max_depth:int, default=3
+min_impurity_decrease:float, default=0.0
+min_impurity_split:float, default=None
+init:estimator or ‘zero’, default=None
+random_state:int or RandomState, default=None
+max_features:"auto", "sqrt", "log2", int or float, default=None
+alpha:float, default=0.9
+verbose:int, default=0
+max_leaf_nodes:int, default=None
+warm_start:bool, default=False
+validation_fraction:float, default=0.1
+n_iter_no_change:int, default=None
+tol:float, default=1e-4
+ccp_alpha:non-negative float, default=0.0
+#### 方法
+
+apply(X)
+decision_function(X)
+fit(X, y\[, sample_weight, monitor\])
+get_params(\[deep\])
+predict(X\[, check_input\])
+predict_log_proba(X)
+predict_proba(X\[, check_input\])
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+staged_decision_function(X)
+staged_predict(X)
+staged_predict_proba(X)
+#### 屬性
+feature_importances_
+oob_improvement_
+train_score_
+loss_
+init_
+estimators_
+n_features_
+max_features_
+### 其他模型
+from mlxtend.regressor import StackingRegressor
 ## 分群
 ## 降維
