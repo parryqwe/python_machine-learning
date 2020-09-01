@@ -427,7 +427,11 @@ classes_
 n_features_
 n_classes_
 max_features_
-
+### 其他模型
+from xgboost import XGBClassifier
+from catboost import CatBoostClassifier
+import lightgbm
+from mlxtend.classifier import StackingClassifier
 ## 預測數值
 ### 線性模型 from sklearn.linear_model import LinearRegression
 #### 參數
@@ -446,11 +450,7 @@ coef_
 rank_
 singular_
 intercept_
-### 其他模型
-from xgboost import XGBClassifier
-from catboost import CatBoostClassifier
-import lightgbm
-from mlxtend.classifier import StackingClassifier
+
 ### 脊迴歸 from sklearn.linear_model import Ridge
 #### 參數
 alpha:float, ndarray of shape (n_targets,), default=1.0
@@ -474,6 +474,32 @@ n_iter_
 ### LASSO from sklearn.linear_model import Lasso
 #### 參數
 alpha:float, ndarray of shape (n_targets,), default=1.0
+fit_intercept:bool, default=True
+normalize:bool, default=False
+precompute:‘auto’, bool or array-like of shape (n_features, n_features), default=False
+copy_X:bool, default=True
+max_iter:int, default=None
+tol:float, default=1e-3
+warm_start:bool, default=False
+positive:bool, default=False
+random_state:int, RandomState instance, default=None
+selection:‘cyclic’, ‘random’, default=’cyclic’
+#### 方法
+fit(X, y\[, sample_weight\])
+get_params(\[deep\])
+path(X, y, *\[, l1_ratio, eps, n_alphas, …\])
+predict(X)
+score(X, y\[, sample_weight\])
+set_params(\*\*params)
+#### 屬性
+coef_
+intercept_
+n_iter_
+sparse_coef_
+### ElasticNet from sklearn.linear_model import ElasticNet
+#### 參數
+alpha:float, ndarray of shape (n_targets,), default=1.0
+l1_ratio:float, default=0.5
 fit_intercept:bool, default=True
 normalize:bool, default=False
 precompute:‘auto’, bool or array-like of shape (n_features, n_features), default=False
@@ -656,4 +682,121 @@ max_features_
 ### 其他模型
 from mlxtend.regressor import StackingRegressor
 ## 分群
+### 階層樹from sklearn.cluster import AgglomerativeClustering
+#### 參數
+n_clusters:int or None, default=2
+affinity:str or callable, default=’euclidean’
+memorystr or object with the joblib.Memory interface, default=None
+connectivityarray-like or callable, default=None
+compute_full_tree‘auto’ or bool, default=’auto’
+linkage{“ward”, “complete”, “average”, “single”}, default=”ward”
+distance_thresholdfloat, default=None
+#### 方法
+fit(X\[, y\])
+fit_predict(X\[, y\])
+get_params(\[deep\])
+set_params(\*\*params)
+#### 屬性
+n_clusters_
+labels_
+n_leaves_
+n_connected_components_
+children_
+### KMEANS from sklearn.cluster import Kmeans
+#### 參數
+n_clusters:int or None, default=8
+init{‘k-means++’, ‘random’, ndarray, callable}, default=’k-means++’
+n_initint, default=10
+max_iterint, default=300
+tolfloat, default=1e-4
+verboseint, default=0
+random_stateint, RandomState instance, default=None
+copy_xbool, default=True
+n_jobsint, default=None
+algorithm{“auto”, “full”, “elkan”}, default=”auto”
+#### 方法
+fit(X\[, y\])
+fit_predict(X\[, y, sample_weight\])
+fit_transform(X\[, y, sample_weight\])
+get_params(\[deep\])
+predict(X\[, sample_weight\])
+score(X\[, y, sample_weight\])
+set_params(\*\*params)
+transform(X)
+#### 屬性
+cluster_centers_
+labels_
+inertia_
+n_iter_
+### minibatch KMEANS from sklearn.cluster import MiniBatchKMeans
+#### 參數
+n_clusters:int or None, default=8
+init{‘k-means++’, ‘random’} or ndarray of shape (n_clusters, n_features), default=’k-means++’
+max_iter:int, default=300
+tol:float, default=1e-4
+batch_size:int, default=100
+verbose:int, default=0
+compute_labels:bool, default=True
+max_no_improvement:int, default=10
+random_state:int, RandomState instance, default=None
+init_size:int, default=None
+n_init:int, default=3
+reassignment_ratio:float, default=0.01
+#### 方法
+fit(X\[, y\])
+fit_predict(X\[, y, sample_weight\])
+fit_transform(X\[, y, sample_weight\])
+get_params(\[deep\])
+partial_fit(X\[, y, sample_weight\])
+predict(X\[, sample_weight\])
+score(X\[, y, sample_weight\])
+set_params(\*\*params)
+transform(X)
+#### 屬性
+cluster_centers_
+labels_
+inertia_
+### 光譜集群from sklearn.cluster import SpectralClustering
+#### 參數
+n_clusters:integer, optional
+eigen_solver:{None, ‘arpack’, ‘lobpcg’, or ‘amg’}
+n_components:integer, optional, default=n_clusters
+random_state:int, RandomState instance, default=None
+n_init:int, optional, default: 10
+gamma:float, default=1.0
+affinity:string or callable, default ‘rbf’
+n_neighbors:integer
+eigen_tol:float, optional, default: 0.0
+assign_labels:{‘kmeans’, ‘discretize’}, default: ‘kmeans’
+degree:float, default=3
+coef0:float, default=1
+kernel_params:dictionary of string to any, optional
+n_jobs:int or None, optional (default=None)
+#### 方法
+fit(X\[, y\])
+fit_predict(X\[, y\])
+get_params(\[deep\])
+set_params(\*\*params)
+#### 屬性
+affinity_matrix_
+labels_
+### DBSCAN from sklearn.cluster import DBSCAN
+#### 參數
+eps:float, default=0.5
+min_samples:int, default=5
+metric:string, or callable, default=’euclidean’
+metric_paramsdict, default=None
+algorithm{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’}, default=’auto’
+leaf_sizeint, default=30
+pfloat, default=None
+n_jobsint, default=None
+#### 方法
+fit(X\[, y, sample_weight\])
+fit_predict(X\[, y, sample_weight\])
+get_params(\[deep\])
+set_params(\*\*params)
+#### 屬性
+core_sample_indices_
+components_
+labels_
 ## 降維
